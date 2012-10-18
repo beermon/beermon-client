@@ -5,3 +5,4 @@ com.shopify.android.beermon/target
 *.iws
 .idea/
 com.shopify.android.beermon/gen
+out/

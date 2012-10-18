@@ -10,8 +10,23 @@
     <TextView android:id="@+id/name" android:text="Lugtread" style="@style/KegTagTextHeadingLarge" />
     <TextView android:id="@+id/brewery" android:text="Beau's" style="@style/KegTagTextHeading" />
     <ImageView android:layout_width="fill_parent" android:layout_height="1px" android:background="#000000"/>
-    <TextView android:id="@+id/ibu" android:text="IBU: 21" style="@style/KegTagText"/>
-    <TextView android:id="@+id/srm" android:text="SRM: 4" style="@style/KegTagText"/>
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/ibu_srm_wrapper">
+            <TextView android:id="@+id/ibu" android:text="IBU: 999" style="@style/KegTagText"/>
+            <TextView android:id="@+id/srm" android:text="SRM: 99" style="@style/KegTagText"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:paddingTop="3dp" android:paddingRight="3dp">
+            <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/star1" android:src="@drawable/star" android:padding="3dp"/>
+                <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/star2" android:src="@drawable/star" android:padding="3dp"/>
+                <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/star3" android:src="@drawable/star" android:padding="3dp"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_gravity="center_horizontal">
+                <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/star4" android:src="@drawable/star" android:padding="3dp"/>
+                <ImageView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/star5" android:src="@drawable/star" android:padding="3dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
     <TextView android:id="@+id/abv" android:text="ABV: 5.2%" style="@style/KegTagText"/>
     <TextView android:id="@+id/createdAt" android:text="INSTALLED ON:" style="@style/KegTagText"/>
     <com.shopify.android.beermon.views.SlantedTextView xmlns:shopify="http://schemas.android.com/apk/res/com.shopify.android.beermon" android:id="@+id/date" android:layout_gravity="center_horizontal" android:text="AUG 14 2012" shopify:slantedTextAngle="-2" style="@style/KegTagDateText"/>
