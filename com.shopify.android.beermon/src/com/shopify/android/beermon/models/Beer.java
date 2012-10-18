@@ -22,6 +22,15 @@ public class Beer {
     public Date createdAt;
     @JsonProperty("updated_at")
     public Date updatedAt;
+    public float rating;
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
 
     public String getName() {
         return name;
