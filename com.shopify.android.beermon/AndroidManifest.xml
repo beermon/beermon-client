@@ -5,7 +5,7 @@
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="15"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:theme="@android:style/Theme.Holo">
-        <activity android:name="BeerMon"
+        <activity android:name=".MainActivity"
                   android:label="@string/app_name"
                   android:screenOrientation="landscape">
             <intent-filter>
