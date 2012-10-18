@@ -4,3 +4,4 @@ com.shopify.android.beermon/target
 *.ipr
 *.iws
 .idea/
+com.shopify.android.beermon/gen
