@@ -46,7 +46,7 @@
     <orderEntry type="library" name="Maven: org.codegist:codegist-common:2.0.0-RC1" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.6.0" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.6.0" level="project" />
-    <orderEntry type="jdk" jdkName="Android 1.6 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android 4.1.2 Platform" jdkType="Android SDK" />
   </component>
 </module>
 
