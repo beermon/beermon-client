@@ -1,2 +1,6 @@
 target
 com.shopify.android.beermon/target
+*.iml
+*.ipr
+*.iws
+.idea/
