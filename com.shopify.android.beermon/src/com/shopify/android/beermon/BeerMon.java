@@ -1,19 +1,25 @@
 package com.shopify.android.beermon;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.widget.TextView;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.shopify.android.beermon.api.APIClientFactory;
 import com.shopify.android.beermon.models.Beer;
 import com.shopify.android.beermon.services.BeerService;
+import com.shopify.android.beermon.views.SlantedTextView;
+import com.shopify.android.beermon.views.TapFragment;
 import org.codegist.crest.CRest;
 import org.codegist.crest.CRestException;
+
+import java.util.Random;
 
 public class BeerMon extends Activity {
     /**
@@ -24,21 +30,22 @@ public class BeerMon extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main);
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        FragmentManager fragmentManager = getFragmentManager();
+        TapFragment tapFragment1 = (TapFragment)fragmentManager.findFragmentById(R.id.tap_1);
+        TapFragment tapFragment2 = (TapFragment)fragmentManager.findFragmentById(R.id.tap_2);
 
-        String strScreenDIP = "";
-        strScreenDIP += "The logical density of the display: " + dm.density + "\n";
-        strScreenDIP += "The screen density expressed as dots-per-inch: " + dm.densityDpi +"\n";
-        strScreenDIP += "The absolute height of the display in pixels: " + dm.heightPixels +"\n";
-        strScreenDIP += "The absolute width of the display in pixels: " + dm.widthPixels + "\n";
-        strScreenDIP += "A scaling factor for fonts displayed on the display: " + dm.scaledDensity + "\n";
-        strScreenDIP += "The exact physical pixels per inch of the screen in the X dimension: " + dm.xdpi + "\n";
-        strScreenDIP += "The exact physical pixels per inch of the screen in the Y dimension: " + dm.ydpi + "\n";
+        SlantedTextView slantedTextView1 = (SlantedTextView)tapFragment1.getView().findViewById(R.id.date);
+        Random random = new Random();
+        slantedTextView1.angle = random.nextInt(6) - 3;
 
-        Log.v("CDB", strScreenDIP);
+        SlantedTextView slantedTextView2 = (SlantedTextView)tapFragment2.getView().findViewById(R.id.date);
+        slantedTextView1.angle = random.nextInt(6) - 3;
+
         TextView v = (TextView) findViewById(R.id.helloText);
 
         handler = new MyHandler(v);
@@ -56,7 +63,7 @@ public class BeerMon extends Activity {
                     msg.obj = String.format("There are %d beers available!", beers.length);
 
                 } catch (CRestException e) {
-                    Log.v("OH SHIIIIII", e.toString());
+                    Log.e("OH SHIIIIII", e.toString());
                     msg.obj = "Shit hit the fan, check the logs";
                 }
                 handler.sendMessage(msg);
