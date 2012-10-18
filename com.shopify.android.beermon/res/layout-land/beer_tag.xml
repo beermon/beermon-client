@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="150dp"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="#FFFFFF"
+              android:layout_gravity="center_horizontal|center_vertical">
+    <ImageView android:id="@+id/hole_punch" android:layout_marginTop="24dp" android:layout_marginBottom="12dp" android:layout_width="24dp" android:layout_height="24dp" android:layout_gravity="center_horizontal" android:src="@drawable/hole_punch"/>
+    <TextView android:id="@+id/name" android:text="Lugtread" style="@style/KegTagTextHeadingLarge" />
+    <TextView android:id="@+id/brewery" android:text="Beau's" style="@style/KegTagTextHeading" />
+    <ImageView android:layout_width="fill_parent" android:layout_height="1px" android:background="#000000"/>
+    <TextView android:id="@+id/ibu" android:text="IBU: 21" style="@style/KegTagText"/>
+    <TextView android:id="@+id/srm" android:text="SRM: 4" style="@style/KegTagText"/>
+    <TextView android:id="@+id/abv" android:text="ABV: 5.2%" style="@style/KegTagText"/>
+    <TextView android:id="@+id/createdAt" android:text="INSTALLED ON:" style="@style/KegTagText"/>
+    <com.shopify.android.beermon.views.SlantedTextView xmlns:shopify="http://schemas.android.com/apk/res/com.shopify.android.beermon" android:id="@+id/date" android:layout_gravity="center_horizontal" android:text="AUG 14 2012" shopify:slantedTextAngle="-2" style="@style/KegTagDateText"/>
+    <ImageView android:id="@+id/barcode" android:layout_marginTop="4dp" android:layout_width="150dp" android:layout_height="90dp" android:layout_gravity="center_horizontal" android:src="@drawable/barcode_1"/>
+
+</LinearLayout>
