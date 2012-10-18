@@ -12,24 +12,23 @@ import org.codegist.crest.annotate.*;
  * To change this template use File | Settings | File Templates.
  */
 @EndPoint("http://beermon.herokuapp.com")
-@Path("/taps")
 @Consumes("application/json")
 public interface TapService {
 
     // get taps
     @GET
-    @Path(".json")
+    @Path("/taps.json")
     Tap[] all();
 
     // get a tap
     @GET
-    @Path("/{id}.json")
+    @Path("/taps/{id}.json")
     Tap find(@PathParam("id") int id);
 
     // put a keg on a tap
 
     @PUT
-    @Path("/{id}.json")
+    @Path("/taps/{id}.json")
     void attachKegToTap(
             @PathParam("id") int id,
             @QueryParam("keg_id") int kegId
