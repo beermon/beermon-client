@@ -13,7 +13,7 @@ import org.codegist.crest.annotate.*;
 @EndPoint("http://beermon.herokuapp.com")
 @Path("")
 @Consumes("application/json")
-public interface KegService {
+public interface KegService extends APIService {
 
     @GET
     @Path("/kegs/{id}/measurements.json")

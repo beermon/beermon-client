@@ -8,5 +8,5 @@ package com.shopify.android.beermon.async;
  * To change this template use File | Settings | File Templates.
  */
 public interface PostCallback {
-    public void execute(boolean success);
+    public void execute(boolean success, Object result);
 }
