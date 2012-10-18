@@ -11,7 +11,7 @@ import org.codegist.crest.annotate.*;
  * To change this template use File | Settings | File Templates.
  */
 @EndPoint("http://beermon.herokuapp.com")
-@Path("/kegs")
+@Path("")
 @Consumes("application/json")
 public interface KegService {
 
