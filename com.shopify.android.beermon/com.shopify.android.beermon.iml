@@ -34,14 +34,13 @@
   <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
-    <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: android:android:4.1.2_r3" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: android:android:4.1.2_r3" level="project" />
     <orderEntry type="library" name="Maven: org.codegist.crest:codegist-crest:2.0.0-RC1" level="project" />
     <orderEntry type="library" name="Maven: org.codegist:codegist-common:2.0.0-RC1" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.6.0" level="project" />
