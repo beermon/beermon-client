@@ -2,12 +2,14 @@ package com.shopify.android.beermon.cache;
 
 import android.content.Context;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import com.shopify.android.beermon.models.Beer;
 import com.shopify.android.beermon.models.Keg;
 import com.shopify.android.beermon.models.Measurement;
 import com.shopify.android.beermon.models.Tap;
 import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;

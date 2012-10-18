@@ -2,24 +2,24 @@ package com.shopify.android.beermon;
 
 import android.app.Activity;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.shopify.android.beermon.api.APIClientFactory;
+import com.shopify.android.beermon.api.BeermonClient;
+import com.shopify.android.beermon.async.ListCallback;
 import com.shopify.android.beermon.cache.JSONCache;
 import com.shopify.android.beermon.models.Beer;
+import com.shopify.android.beermon.models.Tap;
 import com.shopify.android.beermon.services.BeerService;
+import com.shopify.android.beermon.services.TapService;
 import com.shopify.android.beermon.views.SlantedTextView;
 import com.shopify.android.beermon.views.TapFragment;
 import org.codegist.crest.CRest;
-import org.codegist.crest.CRestException;
 
 import java.util.Random;
 
@@ -31,7 +31,9 @@ public class BeerMon extends Activity {
      * Called when the activity is first created.
      */
 
-    Handler handler;
+    Tap leftTap, rightTap;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,47 +53,13 @@ public class BeerMon extends Activity {
         SlantedTextView slantedTextView2 = (SlantedTextView)tapFragment2.getView().findViewById(R.id.date);
         slantedTextView1.angle = random.nextInt(6) - 3;
 
-        TextView v = (TextView) findViewById(R.id.helloText);
-
-        handler = new MyHandler(v);
-
-        final Context ctx = this;
-        Thread thread = new Thread(new Runnable() {
+        BeermonClient client = new BeermonClient(this);
+        client.getTaps(new ListCallback<Tap>() {
             @Override
-            public void run() {
-                CRest crest = APIClientFactory.getClient();
-
-                Message msg = new Message();
-                BeerService beerService = crest.build(BeerService.class);
-                Beer[] beers = beerService.all();
-
-                JSONCache cache = new JSONCache();
-                cache.beers.addAll(Arrays.asList(beers));
-
-                try {
-                    cache.save(ctx);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                msg.obj = String.format("There are %d beers available!", beers.length);
-
-
-                handler.sendMessage(msg);
+            public void execute(List<Tap> list) {
+                leftTap = list.get(0);
+                rightTap = list.get(1);
             }
         });
-        thread.start();
-    }
-
-    private class MyHandler extends Handler {
-        TextView tv;
-        public MyHandler(TextView tv) {
-            this.tv = tv;
-        }
-        @Override
-        public void handleMessage(Message message) {
-            String msgObj = (String) message.obj;
-            tv.setText(msgObj);
-        }
     }
 }

@@ -17,6 +17,7 @@ public class Tap {
     @JsonProperty("updated_at")
     public Date updatedAt;
     public String name;
+    public Keg keg;
 
     public Date getCreatedAt() {
         return createdAt;
@@ -40,5 +41,13 @@ public class Tap {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Keg getKeg() {
+        return keg;
+    }
+
+    public void setKeg(Keg keg) {
+        this.keg = keg;
     }
 }

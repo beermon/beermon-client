@@ -22,6 +22,7 @@ public class Keg {
     public int beerTapId;
     @JsonProperty("beer_id")
     public int beerId;
+    public Beer beer;
 
     public String getKind() {
         return kind;
@@ -61,5 +62,21 @@ public class Keg {
 
     public void setBeerTapId(int beerTapId) {
         this.beerTapId = beerTapId;
+    }
+
+    public int getBeerId() {
+        return beerId;
+    }
+
+    public void setBeerId(int beerId) {
+        this.beerId = beerId;
+    }
+
+    public Beer getBeer() {
+        return beer;
+    }
+
+    public void setBeer(Beer beer) {
+        this.beer = beer;
     }
 }

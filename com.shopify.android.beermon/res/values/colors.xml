@@ -1,0 +1,32 @@
+<resources>
+    <color name="srm_1">#F3F993</color>
+    <color name="srm_2">#F5F75C</color>
+    <color name="srm_3">#F6F513</color>
+    <color name="srm_4">#EAE615</color>
+    <color name="srm_5">#E0D01B</color>
+    <color name="srm_6">#D5BC26</color>
+    <color name="srm_7">#CDAA37</color>
+    <color name="srm_8">#C1963C</color>
+    <color name="srm_9">#BE8C3A</color>
+    <color name="srm_10">#BE823A</color>
+    <color name="srm_11">#C17A37</color>
+    <color name="srm_13">#BC6733</color>
+    <color name="srm_14">#B26033</color>
+    <color name="srm_15">#A85839</color>
+    <color name="srm_16">#985336</color>
+    <color name="srm_12">#BF7138</color>
+    <color name="srm_17">#8D4C32</color>
+    <color name="srm_18">#7C452D</color>
+    <color name="srm_19">#6B3A1E</color>
+    <color name="srm_20">#5D341A</color>
+    <color name="srm_21">#4E2A0C</color>
+    <color name="srm_22">#4A2727</color>
+    <color name="srm_23">#361F1B</color>
+    <color name="srm_24">#261716</color>
+    <color name="srm_25">#231716</color>
+    <color name="srm_26">#19100F</color>
+    <color name="srm_27">#16100F</color>
+    <color name="srm_28">#120D0C</color>
+    <color name="srm_29">#100B0A</color>
+    <color name="srm_30">#050B0A</color>
+</resources>
