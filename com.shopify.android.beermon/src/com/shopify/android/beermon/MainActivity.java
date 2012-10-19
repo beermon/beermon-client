@@ -3,13 +3,8 @@ package com.shopify.android.beermon;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+import android.content.*;
+import android.os.*;
 import android.util.Log;
 import android.view.*;
 import android.widget.TextView;
@@ -55,6 +50,8 @@ public class MainActivity extends Activity {
 
     private long lastRefreshTime = 0;
 
+    private BluetoothServiceInterface serviceInterface;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +59,20 @@ public class MainActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main);
+
+        this.bindService(new Intent(this, BluetoothService.class), connection, Context.BIND_AUTO_CREATE);
     }
+
+    private ServiceConnection connection = new ServiceConnection()
+    {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            serviceInterface = BluetoothServiceInterface.Stub.asInterface((IBinder)service);
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            serviceInterface = null;
+        }
+    };
 
     @Override
     protected void onStart() {
@@ -128,7 +138,21 @@ public class MainActivity extends Activity {
             case R.id.menu_change_keg:
                 //TODO:
                 return true;
-        }
+            case R.id.menu_reset_left:
+                try {
+                    serviceInterface.resetLeftTap();
+                } catch (RemoteException e) {
+                    Log.v("Beermon", "error: " + e);
+                }
+                return true;
+            case R.id.menu_reset_right:
+                try {
+                    serviceInterface.resetRightTap();
+                } catch (RemoteException e) {
+                    Log.v("Beermon", "error: " + e);
+                }
+                return true;
+            }
         return false;
     }
 

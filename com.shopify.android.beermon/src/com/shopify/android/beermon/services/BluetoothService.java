@@ -56,11 +56,23 @@ public class BluetoothService extends Service {
 
     private final BluetoothServiceInterface.Stub mBinder = new BluetoothServiceInterface.Stub() {
         public void resetLeftTap() {
-
+            String msg = "RESET LEFT\n";
+            try {
+                outputStream.write(msg.getBytes());
+            } catch (Exception e) {
+                Log.v("Beermon", "Error: " + e);
+            }
+            Log.v("Beermon", "Left tap sensor reset");
         }
 
         public void resetRightTap() {
-
+            String msg = "RESET Right\n";
+            try {
+                outputStream.write(msg.getBytes());
+            } catch (Exception e) {
+                Log.v("Beermon", "Error: " + e);
+            }
+            Log.v("Beermon", "Right tap sensor reset");
         }
     };
 
@@ -215,10 +227,14 @@ public class BluetoothService extends Service {
     private void updateServer(BluetoothMeasurement bluetoothMeasurement) {
         //only if it's been a minute
         long currentTime = System.currentTimeMillis();
+
+        if (currentTime - lastRefreshTime >= 500) {
+            Log.v("Beermon", "Updated measurement: " + bluetoothMeasurement.toString());
+        }
+
         if (currentTime - lastRefreshTime >= 60000) {
             lastRefreshTime = currentTime;
-
-            Log.v("Beermon", "Updated measurement: " + bluetoothMeasurement.toString());
+            Log.v("Beermon", "Sending to server");
             try {
                 ArrayList<Tap> taps = JSONCache.load(this).getTaps();
                 Measurement leftMeasurement = new Measurement();
