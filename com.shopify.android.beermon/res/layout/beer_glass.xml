@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:layout_gravity="center_horizontal|center_vertical"
+              android:layout_marginLeft="12dp">
+    <RelativeLayout android:layout_height="320dp" android:layout_width="200dp" android:clipChildren="true" android:layout_gravity="center">
+        <ScrollView android:id="@+id/beer_color_scroll" android:layout_height="320dp" android:layout_width="200dp" android:overScrollMode="never">
+            <ImageView android:id="@+id/beer_color" android:layout_height="562dp" android:layout_width="200dp"
+                       android:scaleType="center" android:background="#00FFFFFF" android:layout_centerInParent="true"
+                       android:src="@drawable/glass_beer"/>
+        </ScrollView>
+        <ImageView android:id="@+id/beer_glass" android:layout_height="320dp" android:layout_width="200dp"
+                   android:layout_centerInParent="true" android:src="@drawable/glass_overlay"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -29,4 +29,11 @@
         <item name="android:shadowDy">-1</item>
         <item name="android:shadowRadius">1</item>
     </style>
+
+    <style name="BeermonApp" parent="@android:style/Theme.Holo">
+        <item name="android:actionBarStyle">@style/BeermonActionBar</item>
+    </style>
+    <style name="BeermonActionBar" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">#2e1f30</item>
+    </style>
 </resources>

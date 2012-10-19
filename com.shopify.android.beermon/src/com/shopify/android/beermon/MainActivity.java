@@ -1,13 +1,13 @@
 package com.shopify.android.beermon;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.TextView;
 import com.shopify.android.beermon.api.APIClientFactory;
 import com.shopify.android.beermon.api.BeermonClient;
@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.main);
@@ -69,6 +69,34 @@ public class MainActivity extends Activity {
         updateTaps();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_refresh:
+                updateTaps();
+                return true;
+            case R.id.menu_about:
+                // Build a dialog, design borrowed from Transdroid
+                //TODO:
+                AlertDialog.Builder changesDialog = new AlertDialog.Builder(this);
+                changesDialog.setTitle("About Beermon");
+                View changes = getLayoutInflater().inflate(R.layout.about, null);
+                changesDialog.setView(changes);
+                changesDialog.create();
+                changesDialog.show();
+                return true;
+            case R.id.menu_change_keg:
+                //TODO:
+                return true;
+        }
+        return false;
+    }
 
     private void updateTaps() {
         BeermonClient client = new BeermonClient(this);

@@ -1,4 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Beermon</string>
+    <string-array name="srm_colors"><!-- SRM # is the #'th item in list -->
+        <item>#FFFFFF</item>
+        <item>#F3F993</item>
+        <item>#F5F75C</item>
+        <item>#F6F513</item>
+        <item>#EAE615</item>
+        <item>#E0D01B</item>
+        <item>#D5BC26</item>
+        <item>#CDAA37</item>
+        <item>#C1963C</item>
+        <item>#BE8C3A</item>
+        <item>#BE823A</item>
+        <item>#C17A37</item>
+        <item>#BC6733</item>
+        <item>#B26033</item>
+        <item>#A85839</item>
+        <item>#985336</item>
+        <item>#BF7138</item>
+        <item>#8D4C32</item>
+        <item>#7C452D</item>
+        <item>#6B3A1E</item>
+        <item>#5D341A</item>
+        <item>#4E2A0C</item>
+        <item>#4A2727</item>
+        <item>#361F1B</item>
+        <item>#261716</item>
+        <item>#231716</item>
+        <item>#19100F</item>
+        <item>#16100F</item>
+        <item>#120D0C</item>
+        <item>#100B0A</item>
+        <item>#050B0A</item>
+    </string-array>
 </resources>

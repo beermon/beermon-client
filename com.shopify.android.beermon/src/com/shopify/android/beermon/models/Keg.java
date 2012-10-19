@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class Keg {
     public String kind;
+    public float remaining;
     public float capacity;
     @JsonProperty("created_at")
     public Date createdAt;
@@ -30,6 +31,14 @@ public class Keg {
 
     public void setKind(String kind) {
         this.kind = kind;
+    }
+
+    public float getRemaining() {
+        return remaining;
+    }
+
+    public void setRemaining(float remaining) {
+        this.remaining = remaining;
     }
 
     public float getCapacity() {

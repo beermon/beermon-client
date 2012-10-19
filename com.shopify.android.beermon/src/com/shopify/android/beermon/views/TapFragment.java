@@ -1,15 +1,19 @@
 package com.shopify.android.beermon.views;
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import com.shopify.android.beermon.R;
 import com.shopify.android.beermon.models.Beer;
+import com.shopify.android.beermon.models.Keg;
 import com.shopify.android.beermon.models.Tap;
 
 import java.text.SimpleDateFormat;
@@ -32,6 +36,14 @@ public class TapFragment extends Fragment {
 
     public View onCreateView(android.view.LayoutInflater inflater, android.view.ViewGroup container, android.os.Bundle savedInstanceState) {
         LinearLayout ll = (LinearLayout)inflater.inflate(R.layout.tap_status, container, false);
+
+        final ScrollView beerFill = (ScrollView)ll.findViewById(R.id.beer_color_scroll);
+        beerFill.setOnTouchListener( new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
 
         return ll;
     }
@@ -58,6 +70,12 @@ public class TapFragment extends Fragment {
 
         setRating(tap.keg.beer.rating);
 
+        //set color
+        String[] srmColors = getResources().getStringArray(R.array.srm_colors);
+        View beerColor = getView().findViewById(R.id.beer_color);
+        beerColor.setBackgroundColor(Color.parseColor(srmColors[(int) tap.keg.beer.srm]));
+        adjustGlassView(tap.keg);
+
         View beerTag = (View)getView().findViewById(R.id.beer_tag);
         if (beerTag.getVisibility() != View.VISIBLE) {
             //fade it in
@@ -80,6 +98,15 @@ public class TapFragment extends Fragment {
         for (int i=0; i<views.length; ++i) {
             views[i].setVisibility((i+1 <= rating) ? View.VISIBLE : View.INVISIBLE);
         }
+    }
+
+    private void adjustGlassView(Keg keg) {
+        ScrollView beerFill = (ScrollView)getView().findViewById(R.id.beer_color_scroll);
+        int totalHeight = beerFill.getChildAt(0).getHeight();
+
+        int offset = totalHeight - (int)((float)totalHeight * keg.remaining / keg.capacity);
+
+        beerFill.smoothScrollTo(0, offset);
     }
 
 }
