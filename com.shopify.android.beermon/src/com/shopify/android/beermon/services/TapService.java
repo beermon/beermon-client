@@ -13,7 +13,7 @@ import org.codegist.crest.annotate.*;
  */
 @EndPoint("http://beermon.herokuapp.com")
 @Consumes("application/json")
-public interface TapService {
+public interface TapService extends APIService{
 
     // get taps
     @GET

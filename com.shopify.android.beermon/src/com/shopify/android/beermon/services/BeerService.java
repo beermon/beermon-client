@@ -14,7 +14,7 @@ import org.codegist.crest.annotate.*;
 @EndPoint("http://beermon.herokuapp.com")
 @Path("")
 @Consumes("application/json")
-public interface BeerService {
+public interface BeerService extends APIService {
 
     @GET
     @Path("/beers.json")
