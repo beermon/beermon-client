@@ -96,6 +96,8 @@ public class TapFragment extends Fragment {
             beerTag.animate().alpha(1.0f);
         }
 
+        Log.v("Beermon", "Update keg " + tap.keg.beer.name + " volume: " + tap.keg.remaining + " / " + tap.keg.capacity + "L");
+
         adjustGlassView(tap.keg);
     }
 
@@ -136,8 +138,11 @@ public class TapFragment extends Fragment {
         ScrollView beerFill = (ScrollView)getView().findViewById(R.id.beer_color_scroll);
         int totalHeight = beerFill.getChildAt(0).getHeight();
 
-        int offset = totalHeight - (int)((float)totalHeight * keg.remaining / keg.capacity);
+        int offset = (int)((float)totalHeight * keg.remaining / keg.capacity) - beerFill.getHeight();
 
+        Log.v("Beermon", "offset = " + offset + " totalHeight: " + totalHeight + " beer:" + keg.remaining + "/" + keg.capacity);
+
+        beerFill.scrollTo(0, 0);
         beerFill.smoothScrollTo(0, offset);
     }
 

@@ -232,7 +232,7 @@ public class BluetoothService extends Service {
             Log.v("Beermon", "Updated measurement: " + bluetoothMeasurement.toString());
         }
 
-        if (currentTime - lastRefreshTime >= 60000) {
+        if (currentTime - lastRefreshTime >= 30000) {
             lastRefreshTime = currentTime;
             Log.v("Beermon", "Sending to server");
             try {
