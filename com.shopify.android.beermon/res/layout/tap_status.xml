@@ -14,4 +14,18 @@
             <include layout="@layout/beer_tag"/>
             <include layout="@layout/beer_glass"/>
     </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="220dp"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:background="#FFFFFF"
+                  android:layout_gravity="center_horizontal|center_vertical"
+                  android:layout_centerInParent="true"
+                  android:paddingBottom="24dp"
+                  android:id="@+id/out_of_order_tag"
+                  android:visibility="invisible">
+        <ImageView android:id="@+id/out_of_order_hole_punch" android:layout_marginTop="24dp" android:layout_marginBottom="12dp" android:layout_width="24dp" android:layout_height="24dp" android:layout_gravity="center_horizontal" android:src="@drawable/hole_punch"/>
+        <TextView android:id="@+id/out_of_order_message" android:text="Out of order\n\n:-(" android:lines="3" style="@style/KegTagTextHeadingLarge" android:gravity="center" android:paddingTop="48dp" android:paddingBottom="48dp" />
+
+    </LinearLayout>
 </RelativeLayout>

@@ -24,6 +24,15 @@ public class Keg {
     @JsonProperty("beer_id")
     public int beerId;
     public Beer beer;
+    public int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getKind() {
         return kind;

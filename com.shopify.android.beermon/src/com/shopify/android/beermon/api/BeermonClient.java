@@ -58,12 +58,18 @@ public class BeermonClient {
 
                 final Beer[] beers = service.all();
 
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        callback.execute(Arrays.asList(beers));
-                    }
-                });
+                if (activity != null) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            callback.execute(Arrays.asList(beers));
+                        }
+                    });
+                } else {
+                    callback.execute(Arrays.asList(beers));
+                }
+
+
             }
         }).start();
     }
@@ -76,12 +82,16 @@ public class BeermonClient {
                     BeerService service = crest.build(BeerService.class);
                     final Keg responseKeg = service.createKeg(beerId, keg);
 
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            callback.execute(true, responseKeg);
-                        }
-                    });
+                    if (activity != null) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.execute(true, responseKeg);
+                            }
+                        });
+                    } else {
+                        callback.execute(true, responseKeg);
+                    }
                 } catch (Exception e) {
                     callback.execute(false, e);
                 }
@@ -97,12 +107,16 @@ public class BeermonClient {
                     TapService service = crest.build(TapService.class);
                     service.attachKegToTap(tapId, kegId);
 
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            callback.execute(true, null);
-                        }
-                    });
+                    if (activity != null) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.execute(true, null);
+                            }
+                        });
+                    } else {
+                        callback.execute(true, null);
+                    }
                 } catch (Exception e) {
                     callback.execute(false, e);
                 }
@@ -117,8 +131,17 @@ public class BeermonClient {
                 try {
                     KegService service = crest.build(KegService.class);
                     service.addMeasurementForKeg(kegId, measurement);
-                } catch (Exception e) {
-                    callback.execute(false, e);
+                } catch (final Exception e) {
+                    if (activity != null) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                callback.execute(false, e);
+                            }
+                        });
+                    } else {
+                        callback.execute(false, e);
+                    }
                 }
             }
         }).start();

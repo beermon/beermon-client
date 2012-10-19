@@ -14,6 +14,7 @@ import com.shopify.android.beermon.models.Beer;
 import com.shopify.android.beermon.models.Keg;
 import com.shopify.android.beermon.models.Tap;
 
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 
 /**
@@ -47,6 +48,17 @@ public class TapFragment extends Fragment {
     }
 
     public void update(Tap tap) {
+        View outOfOrderTag = getView().findViewById(R.id.out_of_order_tag);
+        if (tap.keg == null) {
+            outOfOrderTag.setVisibility(View.VISIBLE);
+
+            View beerTag = (View)getView().findViewById(R.id.working_tap_status);
+            beerTag.setVisibility(View.INVISIBLE);
+            return;
+        }
+
+        outOfOrderTag.setVisibility(View.INVISIBLE);
+
         TextView textView = (TextView)getView().findViewById(R.id.name);
         textView.setText(tap.keg.beer.name);
 
@@ -68,11 +80,12 @@ public class TapFragment extends Fragment {
 
         setRating(tap.keg.beer.rating);
 
-        setBarcode();
+        setBarcode(tap);
 
         //set color
         String[] srmColors = getResources().getStringArray(R.array.srm_colors);
         View beerColor = getView().findViewById(R.id.beer_color);
+        int srmRounded = (int)Math.max(Math.min(tap.keg.beer.srm, 30.0), 1.0);
         beerColor.setBackgroundColor(Color.parseColor(srmColors[(int) tap.keg.beer.srm]));
 
         View beerTag = (View)getView().findViewById(R.id.working_tap_status);
@@ -86,8 +99,11 @@ public class TapFragment extends Fragment {
         adjustGlassView(tap.keg);
     }
 
-    private void setBarcode() {
-        double coin = Math.random() * 3.0; //three sided coin ಠ_ಠ
+    private void setBarcode(Tap tap) {
+        String hashText = tap.keg.beer.name + " " + tap.keg.beer.brewery + tap.keg.createdAt.toString();
+        int hashCode = hashText.hashCode();
+
+        double coin = hashCode % 3;//Math.random() * 3.0; //three sided coin ಠ_ಠ
         int resource;
         if (coin <= 1.0) {
             resource = R.drawable.barcode_1;
