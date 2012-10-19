@@ -35,5 +35,7 @@
     </style>
     <style name="BeermonActionBar" parent="@android:style/Widget.Holo.ActionBar">
         <item name="android:background">#2e1f30</item>
+        <item name="android:displayOptions">disableHome|showCustom</item>
+        <item name="android:customNavigationLayout">@layout/action_bar_home_icon_default</item>
     </style>
 </resources>

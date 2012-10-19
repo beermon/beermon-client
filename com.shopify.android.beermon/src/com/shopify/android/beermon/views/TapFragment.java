@@ -8,9 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.*;
 import com.shopify.android.beermon.R;
 import com.shopify.android.beermon.models.Beer;
 import com.shopify.android.beermon.models.Keg;
@@ -35,9 +33,9 @@ public class TapFragment extends Fragment {
     }
 
     public View onCreateView(android.view.LayoutInflater inflater, android.view.ViewGroup container, android.os.Bundle savedInstanceState) {
-        LinearLayout ll = (LinearLayout)inflater.inflate(R.layout.tap_status, container, false);
+        RelativeLayout rl = (RelativeLayout)inflater.inflate(R.layout.tap_status, container, false);
 
-        final ScrollView beerFill = (ScrollView)ll.findViewById(R.id.beer_color_scroll);
+        final ScrollView beerFill = (ScrollView)rl.findViewById(R.id.beer_color_scroll);
         beerFill.setOnTouchListener( new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -45,7 +43,7 @@ public class TapFragment extends Fragment {
             }
         });
 
-        return ll;
+        return rl;
     }
 
     public void update(Tap tap) {
@@ -70,19 +68,37 @@ public class TapFragment extends Fragment {
 
         setRating(tap.keg.beer.rating);
 
+        setBarcode();
+
         //set color
         String[] srmColors = getResources().getStringArray(R.array.srm_colors);
         View beerColor = getView().findViewById(R.id.beer_color);
         beerColor.setBackgroundColor(Color.parseColor(srmColors[(int) tap.keg.beer.srm]));
-        adjustGlassView(tap.keg);
 
-        View beerTag = (View)getView().findViewById(R.id.beer_tag);
+        View beerTag = (View)getView().findViewById(R.id.working_tap_status);
         if (beerTag.getVisibility() != View.VISIBLE) {
             //fade it in
             beerTag.setAlpha(0.0f);
             beerTag.setVisibility(View.VISIBLE);
             beerTag.animate().alpha(1.0f);
         }
+
+        adjustGlassView(tap.keg);
+    }
+
+    private void setBarcode() {
+        double coin = Math.random() * 3.0; //three sided coin ಠ_ಠ
+        int resource;
+        if (coin <= 1.0) {
+            resource = R.drawable.barcode_1;
+        } else if (coin <= 2.0) {
+            resource = R.drawable.barcode_2;
+        } else {
+            resource = R.drawable.barcode_3;
+        }
+
+        ImageView barcode = (ImageView)getView().findViewById(R.id.barcode);
+        barcode.setImageDrawable(getResources().getDrawable(resource));
     }
 
     private void setRating(float rating) {
