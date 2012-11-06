@@ -26,7 +26,6 @@ public class APIObjectSerializer implements Serializer<List<Param>> {
 
     @Override
     public void serialize(List<Param> value, Charset charset, OutputStream outputStream) throws Exception {
-        Log.d("APIObjectSerializer", "Serializing: " + value);
         JsonObject o = JsonObject.toJsonObject(value);
         jackson.writeValue(outputStream, o);
     }

@@ -26,8 +26,6 @@ import java.util.*;
 
 public class MainActivity extends Activity {
 
-    MockDataReporter reporter;
-
     public static String REFRESH_DATA = "com.shopify.android.beermon.action.refreshData";
 
     private class DataUpdateReceiver extends BroadcastReceiver {
@@ -82,19 +80,10 @@ public class MainActivity extends Activity {
         super.onStart();    //To change body of overridden methods use File | Settings | File Templates.
 
         startService(new Intent(getApplicationContext(), BluetoothService.class));
-        try {
-            reporter = new MockDataReporter(this);
-            reporter.beginReporting();
-            Log.d("MainActivity", "Reporter has started");
-        } catch (Exception e){
-            Log.e("MainActivity", "Could not create data reporter!!");
-            Log.e("MainActivity", e.toString());
-        }
     }
 
     @Override
     protected void onStop() {
-        reporter.endReporting();
         super.onStop();
     }
 

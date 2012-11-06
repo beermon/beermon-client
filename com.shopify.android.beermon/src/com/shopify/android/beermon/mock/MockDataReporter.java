@@ -4,11 +4,8 @@ import android.content.Context;
 import android.util.Log;
 import com.shopify.android.beermon.api.BeermonClient;
 import com.shopify.android.beermon.async.PostCallback;
-import com.shopify.android.beermon.cache.JSONCache;
 import com.shopify.android.beermon.models.Measurement;
-import com.shopify.android.beermon.models.Tap;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 /**

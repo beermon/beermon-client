@@ -2,9 +2,6 @@ package com.shopify.android.beermon.api;
 
 import org.codegist.crest.CRest;
 import org.codegist.crest.CRestBuilder;
-import org.codegist.crest.CRestConfig;
-
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
