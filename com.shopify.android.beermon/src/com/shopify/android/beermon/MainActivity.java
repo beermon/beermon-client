@@ -12,6 +12,7 @@ import com.shopify.android.beermon.api.APIClientFactory;
 import com.shopify.android.beermon.api.BeermonClient;
 import com.shopify.android.beermon.async.ListCallback;
 import com.shopify.android.beermon.cache.JSONCache;
+import com.shopify.android.beermon.mock.MockDataReporter;
 import com.shopify.android.beermon.models.Beer;
 import com.shopify.android.beermon.models.Tap;
 import com.shopify.android.beermon.services.BeerService;
@@ -24,6 +25,8 @@ import org.codegist.crest.CRest;
 import java.util.*;
 
 public class MainActivity extends Activity {
+
+    MockDataReporter reporter;
 
     public static String REFRESH_DATA = "com.shopify.android.beermon.action.refreshData";
 
@@ -79,6 +82,26 @@ public class MainActivity extends Activity {
         super.onStart();    //To change body of overridden methods use File | Settings | File Templates.
 
         startService(new Intent(getApplicationContext(), BluetoothService.class));
+        try {
+            reporter = new MockDataReporter(this);
+            reporter.beginReporting();
+            Log.d("MainActivity", "Reporter has started");
+        } catch (Exception e){
+            Log.e("MainActivity", "Could not create data reporter!!");
+            Log.e("MainActivity", e.toString());
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        reporter.endReporting();
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        unbindService(connection);
+        super.onDestroy();
     }
 
     @Override

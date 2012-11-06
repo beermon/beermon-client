@@ -1,6 +1,8 @@
 package com.shopify.android.beermon.services;
 
+import com.shopify.android.beermon.models.APIObjectWriter;
 import com.shopify.android.beermon.models.Measurement;
+import com.shopify.android.beermon.serializers.APIObjectSerializer;
 import org.codegist.crest.annotate.*;
 
 /**
@@ -13,6 +15,7 @@ import org.codegist.crest.annotate.*;
 @EndPoint("http://beermon.herokuapp.com")
 @Path("")
 @Consumes("application/json")
+@EntityWriter(APIObjectWriter.class)
 public interface KegService extends APIService {
 
     @GET
@@ -23,6 +26,8 @@ public interface KegService extends APIService {
     @Path("/kegs/{id}/measurements.json")
     void addMeasurementForKeg(
             @PathParam("id") int kegId,
-            @QueryParam("measurement") Measurement measurement
+
+            @FormParam("measurement")
+            Measurement measurement
     );
 }

@@ -3,8 +3,6 @@ package com.shopify.android.beermon.models;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.ObjectMapper;
 
-import java.io.StringWriter;
-import java.security.PublicKey;
 import java.util.Date;
 
 /**
@@ -25,13 +23,4 @@ public class Measurement {
     @JsonProperty("sampled_at")
     public Date sampledAt;
     public float temperature;
-
-    public String toString() {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            return mapper.writeValueAsString(this);
-        } catch (Exception e) {
-            return "";
-        }
-    }
 }
